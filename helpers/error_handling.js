@@ -1,11 +1,11 @@
 const response = require('./response');
 
-const ok =(res, message, data = []) => {
+const ok = (res, message, data = []) => {
   const type = 'success';
   return res.json(response(message, data, type, false)).status(200); 
 };
 
-const created =(res, message, data = []) => {
+const created = (res, message, data = []) => {
   const type = 'success';
   return res.json(response(message, data, type, false)).status(201); 
 };

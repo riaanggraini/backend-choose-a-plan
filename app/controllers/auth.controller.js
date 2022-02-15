@@ -17,7 +17,7 @@ const auth = async (req, res) => {
     if(!utils.validateEmail(email)) return responseHandler.badRequest(res, message('email').invalidFormat);
 
     // find user
-    const user = await userQueries.getUser(req.body.email);
+    const user = await userQueries.getUser(email);
 
     // validate if user not found
     if(!user) return responseHandler.badRequest(res, message('user').notFoundResource);
@@ -26,7 +26,7 @@ const auth = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     // if password not match
-    if(!passwordMatch) return responseHandler.badRequest(res, message().invalidEmailOrPassword);
+    if(!passwordMatch) return responseHandler.authenticationFailed(res, message().invalidEmailOrPassword);
     
     // generate token
     const token = await generateToken( { email, password } );
@@ -38,7 +38,7 @@ const auth = async (req, res) => {
   }catch(err){
     // send error res
     return responseHandler.internalError(h, message().serverError);
-  }
+  };
 };
 
 module.exports = {

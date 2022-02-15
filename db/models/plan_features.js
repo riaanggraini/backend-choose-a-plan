@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      plan_features.hasOne(models.features, {
+        foreignKey: 'id',
+        sourceKey: 'feature_id'
+      });
     }
   }
   plan_features.init({
@@ -19,10 +22,19 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     plan_id: DataTypes.INTEGER,
-    feature_id: DataTypes.INTEGER
+    feature_id: DataTypes.INTEGER,
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: DataTypes.DATE,
+    },
   }, {
     sequelize,
     modelName: 'plan_features',
   });
+
   return plan_features;
 };
