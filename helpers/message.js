@@ -11,7 +11,7 @@ const MESSAGE = (key) => {
   const notFoundResource = `${key} not found in our database`;
   const invalidCreateResource = `invalid create resource: ${key}`;
   const loginError = 'Failed to login';
-  const unathorization = 'failed to unathorize';
+  const unathorization = 'failed to authorize';
   const serverError = 'Internal Server Error';
   
   return message = {
@@ -27,7 +27,7 @@ const MESSAGE = (key) => {
     invalidCreateResource,
     loginError,
     unathorization,
-    serverError
+    serverError,
   };
 };
   

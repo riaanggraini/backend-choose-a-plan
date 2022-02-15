@@ -1,5 +1,5 @@
 const { planQueries } = require('../queries');
-const { planDecorator } = require('../decorators');
+const { planDecorator, featureDecorator } = require('../decorators');
 const responseHandler = require('../../helpers/error_handling');
 const message = require('../../helpers/message').MESSAGE;
 
@@ -17,6 +17,21 @@ const plans = async (req, res) => {
   }
 };
 
+const features = async (req, res) => {
+  try{
+    // get all features
+    const features = await planQueries.getFeatures();
+
+    // return response
+    const data = await featureDecorator(features)
+    return responseHandler.ok(res, message('get features').success, data);
+  }catch(err){
+    // send error res
+    return responseHandler.internalError(res, message().serverError);
+  }
+};
+
 module.exports = {
-  plans
+  plans,
+  features
 };

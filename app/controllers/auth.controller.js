@@ -29,7 +29,7 @@ const auth = async (req, res) => {
     if(!passwordMatch) return responseHandler.authenticationFailed(res, message().invalidEmailOrPassword);
     
     // generate token
-    const token = await generateToken( { email, password } );
+    const token = await generateToken(user);
     
     // return token as response
     const data = { token };
@@ -37,7 +37,7 @@ const auth = async (req, res) => {
     
   }catch(err){
     // send error res
-    return responseHandler.internalError(h, message().serverError);
+    return responseHandler.internalError(res, message().serverError);
   };
 };
 
