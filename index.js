@@ -1,7 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const routes = require('./app/routes');
+
+// support parsing of application/json type post data
+app.use(bodyParser.json());
 
 // call routes
 app.use('/v1/', routes);
