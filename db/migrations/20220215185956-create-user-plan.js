@@ -14,6 +14,7 @@ module.exports = {
           model: 'users',
           key: 'id'
         },
+        unique: 'unique_tag',
         type: Sequelize.INTEGER
       },
       plan_id: {
@@ -22,6 +23,7 @@ module.exports = {
           model: 'plans',
           key: 'id'
         },
+        unique: 'unique_tag',
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -35,7 +37,16 @@ module.exports = {
         field: "updated_at",
         type: Sequelize.DATE
       }
-    });
+    },
+    {
+      uniqueKeys: {
+        unique_tag: {
+          customIndex: true,
+          fields: ["user_id", "plan_id"]
+        }
+      }
+    }
+    );
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('user_plans');

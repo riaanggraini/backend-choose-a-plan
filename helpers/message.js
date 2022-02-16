@@ -13,6 +13,7 @@ const MESSAGE = (key) => {
   const loginError = 'Failed to login';
   const unathorization = 'failed to authorize';
   const serverError = 'Internal Server Error';
+  const duplicateData = `${key} already registered in our database`;
   
   return message = {
     success,
@@ -28,6 +29,7 @@ const MESSAGE = (key) => {
     loginError,
     unathorization,
     serverError,
+    duplicateData,
   };
 };
   

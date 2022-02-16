@@ -30,6 +30,12 @@ const authenticationFailed = (res, message) => {
   return res.json(response(message, [], type)).status(401);
 };
 
+const duplicate = (res, message) => {
+  const type = 'duplicate_data_error';
+  return res.json(response(message, [], type)).status(409);
+};
+
+
 module.exports = {
   ok,
   created,
@@ -37,4 +43,5 @@ module.exports = {
   notFound,
   internalError,
   authenticationFailed,
+  duplicate,
 };

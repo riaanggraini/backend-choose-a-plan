@@ -19,9 +19,27 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     user_id: DataTypes.STRING,
-    plan_id: DataTypes.STRING
+    plan_id: DataTypes.STRING,
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      field: 'updated_at',
+      type: DataTypes.DATE,
+    },
   }, {
     sequelize,
+    indexes: [
+      {
+        unique: true,
+        fields: ["user_id"]
+      },
+      {
+        unique: true,
+        fields: ["plan_id"]
+      },
+    ],
     modelName: 'user_plan',
   });
   return user_plan;

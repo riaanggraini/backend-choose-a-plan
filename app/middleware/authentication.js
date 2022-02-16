@@ -5,14 +5,14 @@ const { userQueries } = require('../queries');
 
 module.exports =  async (req, res, next) => {
   try{
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
     if(!token) return responseHandler.authenticationFailed(res, message().unathorization);
 
     const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
     
-     // find user
+    // find user
     const user = await userQueries.getUser(decoded.data.email);
 
     // validate if user not found
@@ -22,6 +22,6 @@ module.exports =  async (req, res, next) => {
 
     next();
   }catch(err){
-    return responseHandler.internalError(res, message().serverError);
+    return responseHandler.authenticationFailed(res, message().unathorization);
   }
-}
+};
