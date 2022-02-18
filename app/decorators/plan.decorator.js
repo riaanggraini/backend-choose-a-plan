@@ -13,6 +13,7 @@ const planDecorator = async (plans) =>{
       id: el.id,
       name: el.name,
       sku: el.sku,
+      price: el.price,
       features,
     };
   });

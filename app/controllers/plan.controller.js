@@ -10,7 +10,7 @@ const plans = async (req, res) => {
     const plans = await planQueries.getPlans();
 
     // return response
-    const data = await planDecorator(plans);
+    const data = await planDecorator(plans, features);
     return responseHandler.ok(res, message('get plans').success, data);
   }catch(err){
     // send error res

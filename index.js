@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const routes = require('./app/routes');
 
+app.use(cors())
 // support parsing of application/json type post data
 app.use(bodyParser.json());
 
