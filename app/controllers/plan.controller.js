@@ -14,7 +14,7 @@ const plans = async (req, res) => {
     return responseHandler.ok(res, message('get plans').success, data);
   }catch(err){
     // send error res
-    return responseHandler.internalError(h, message().serverError);
+    return responseHandler.internalError(res, message().serverError);
   }
 };
 
@@ -75,6 +75,8 @@ const subscribeAllPlan = async(req, res)=>{
     }));
     // create all plans
     await planService.createPlans(data);
+
+    return responseHandler.created(res, message('all plans').created);
 
   }catch(err) {
     // send error res

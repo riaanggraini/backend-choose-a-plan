@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  app:
+    image: backend/choose-a-plan:dev-latest
+    environment:
+      PORT: 8000
+      NODE_ENV: development
+      DB_HOST: db
+      DB_PORT: 3307
+      DB_PASSWORD: password
+      DB_USERNAME: plan_pick
+      DB_DATABASE: plan-picker
+      JWT_PRIVATE_KEY: jwtprivatekey
+    restart: always
+    networks:
+      - backend
+    entrypoint: ["/bin/sh", "./entrypoint.sh"]
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    logging:
+      options:
+        max-size: 10m
+        max-file: '5'
+    links:
+      - db
+  db:
+    image: mysql:latest
+    restart: always
+    ports: 
+      - 3307:3306
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: password123
+      MYSQL_DATABASE: plan-picker
+      MYSQL_USER: plan_pick
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - mysql:/var/lib/mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+networks:
+  backend:
+    driver: 'bridge'
+volumes:
+  mysql:

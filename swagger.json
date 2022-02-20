@@ -1,0 +1,218 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This a service for plan chooser application",
+    "version": "1.0.0",
+    "title": "Choose a plan"
+  },
+  "basePath": "/v1",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/v1/auth": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "login to access some choose a plan api",
+        "description": "",
+        "operationId": "login",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "description": "The cred for login",
+          "required": true,
+          "content": {
+            "application/json" : {
+              "schema": {
+                "$ref": "#/definitions/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/plans": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Finds all plans",
+        "description": "api to show all plans",
+        "operationId": "findAll",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/plan/features": {
+      "get": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "Finds all features",
+        "description": "api to show all features",
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/plan/subscribe": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "subscribe a plan",
+        "description": "",
+        "operationId": "subscribePlan",
+        "requestBody": {
+          "description": "The body for subscribe",
+          "required": true,
+          "content": {
+            "application/json" : {
+              "schema": {
+                "$ref": "#/definitions/subscribe"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        },
+        "security": [
+          {
+          "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/plan/subscribe/all": {
+      "post": {
+        "tags": [
+          "plan"
+        ],
+        "summary": "subscribe a plan all ",
+        "description": "",
+        "operationId": "subscribePlan",
+        "requestBody": {
+          "description": "The body for subscribe all plan",
+          "required": true,
+          "content": {
+           "application/json": {
+              "schema": {
+              "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        },
+        "security": [
+          {
+          "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "definitions": {
+    "login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "subscribe": {
+      "type": "object",
+      "properties": {
+        "plan_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "components": {        
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

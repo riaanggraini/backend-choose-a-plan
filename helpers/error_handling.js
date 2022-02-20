@@ -2,7 +2,7 @@ const response = require('./response');
 
 const ok = (res, message, data = []) => {
   const type = 'success';
-  return res.send(response(message, data, type, false))
+  return res.send(response(message, data, type, false));
 };
 
 const created = (res, message, data = []) => {
@@ -12,7 +12,7 @@ const created = (res, message, data = []) => {
 
 const badRequest = (res, message) => {
   const type = 'invalid_request_error';
-  return res.status(400).send(response(message, [], type))
+  return res.status(400).send(response(message, [], type));
 };
 
 const notFound = (res, message) => {
