@@ -11,7 +11,7 @@ before the steps, make sure you have installed node in your local.
 - start the service by following syntax ``npm run dev``
 
 
-## Running By Docker
+# Running By Docker
 ## Build Docker Image
 
 Go to the root directory that has `Dockerfile` and run the following command to build the Docker image.
@@ -24,6 +24,14 @@ run `docker-compose.yml`, Change the values of environment variables and start d
 
 ```shell
 docker-compose up -d
+```
+
+# simple running
+
+run the startup bash script file by:
+
+```shell
+source ./startup.sh
 ```
 
 ## API Documentation
