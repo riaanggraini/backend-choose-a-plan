@@ -4,10 +4,9 @@
 before the steps, make sure you have installed node in your local.
 
 - make sure you are in the directory, by ``cd project name``.
-- install the dependencies by``npm intall``.
+- install the dependencies by``npm install``.
 - make a mySQL table, for example``plan_chooser``.
-- copy``.env.example`` and rename it into ``.env``, change value as needed.
-- copy ``db/config/config.json.example`` and rename it into ``db/config/config.json``, and fill your db credentials based on environment.
+- copy``.env.example`` and rename it into ``.env``, change value as needed, ex: your db credentials based on environment.
 - run db migration by following syntax ``npx sequelize-cli db:migrate ``and  run db seed by following syntax ``npx sequelize-cli db:seed:all``, or just simpy by running ``entrypoint.sh``
 - start the service by following syntax ``npm run dev``
 

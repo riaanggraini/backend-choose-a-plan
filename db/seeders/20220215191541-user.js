@@ -18,5 +18,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
+    return queryInterface.bulkDelete('users', null, {});
   }
 };
